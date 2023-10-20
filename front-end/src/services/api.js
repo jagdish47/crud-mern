@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const addUser = async (data) => {
-  const url = "";
+  const url = "http://localhost:8080";
 
   try {
     return await axios.post(`${url}/add`, data);

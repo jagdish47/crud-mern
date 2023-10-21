@@ -9,7 +9,7 @@ const defaultData = {
   phone: "",
 };
 
-const AddUser = (e) => {
+const EditUser = (e) => {
   const navigation = useNavigate();
 
   const [user, setUser] = useState(defaultData);
@@ -30,7 +30,7 @@ const AddUser = (e) => {
   return (
     <div className=" h-[80vh] flex items-center justify-center">
       <form className="max-w-md mx-auto bg-white p-4 rounded shadow-lg">
-        <h1 className="text-2xl font-semibold mb-4">User Information</h1>
+        <h1 className="text-2xl font-semibold mb-4">Edit User</h1>
         <label className="block text-gray-700 font-medium mb-2">
           Name
           <input
@@ -87,4 +87,4 @@ const AddUser = (e) => {
   );
 };
 
-export default AddUser;
+export default EditUser;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUser } from "../services/api";
+import { getUsers } from "../services/api";
 import { BiSolidEditAlt } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -13,7 +13,7 @@ const AllUser = () => {
   }, []);
 
   const getAllUsers = async () => {
-    const response = await getUser();
+    const response = await getUsers();
     setData(response.data);
     console.log(data);
   };

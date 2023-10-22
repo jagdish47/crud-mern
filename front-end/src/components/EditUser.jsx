@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { addUser } from "../services/api";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getUser, editUser } from "../services/api";
+import { useNavigate, useParams } from "react-router-dom";
 
 const defaultData = {
   name: "",
@@ -9,19 +9,29 @@ const defaultData = {
   phone: "",
 };
 
-const EditUser = (e) => {
+const EditUser = () => {
   const navigation = useNavigate();
 
+  const { id } = useParams();
+
   const [user, setUser] = useState(defaultData);
+
+  useEffect(() => {
+    loadUserDetails();
+  }, []);
+
+  const loadUserDetails = async () => {
+    const response = await getUser(id);
+    setUser(response.data[0]);
+  };
 
   const dataHandle = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleClick = async (e) => {
+  const editUserDetails = async (e) => {
     e.preventDefault();
-    await addUser(user);
-    setUser(defaultData);
+    await editUser(user, id);
     navigation("/all");
   };
 
@@ -76,11 +86,11 @@ const EditUser = (e) => {
           />
         </label>
         <button
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => editUserDetails(e)}
           type="submit"
           className="bg-blue-500 text-white font-medium py-2 px-4 rounded hover:bg-blue-600 focus:outline-none"
         >
-          Submit
+          Edit User
         </button>
       </form>
     </div>

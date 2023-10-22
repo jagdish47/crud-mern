@@ -22,3 +22,12 @@ export const getUsers = async (request, response) => {
     console.log("Error while Getting Data From Database : ", error);
   }
 };
+
+export const deleteUser = async (request, response) => {
+  try {
+    await User.deleteOne({ _id: request.params.id });
+    response.status(200).json({ message: "User Deleted Successfully" });
+  } catch (error) {
+    response.status(409).json({ message: error.message });
+  }
+};

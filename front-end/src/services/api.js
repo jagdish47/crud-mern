@@ -17,3 +17,11 @@ export const getUser = async () => {
     console.log("Error while fetching data : ", error);
   }
 };
+
+export const deleteUser = async (id) => {
+  try {
+    return await axios.delete(`${url}/${id}`);
+  } catch (error) {
+    console.log("Error while Deleting data");
+  }
+};

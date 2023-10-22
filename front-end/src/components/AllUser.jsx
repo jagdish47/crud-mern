@@ -3,6 +3,7 @@ import { getUser } from "../services/api";
 import { BiSolidEditAlt } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { deleteUser } from "../services/api";
 
 const AllUser = () => {
   const [data, setData] = useState([]);
@@ -15,6 +16,11 @@ const AllUser = () => {
     const response = await getUser();
     setData(response.data);
     console.log(data);
+  };
+
+  const deleteUserDetail = async (id) => {
+    await deleteUser(id);
+    getAllUsers();
   };
 
   return (
@@ -61,7 +67,7 @@ const AllUser = () => {
                 </Link>
               </td>
               <td className="pl-5">
-                <button>
+                <button onClick={() => deleteUserDetail(item._id)}>
                   <AiFillDelete />
                 </button>
               </td>
